@@ -34,7 +34,13 @@ export default class App extends Component {
           style={stylesHome.button}
           onPress={() => this.props.navigation.navigate('Test')}
         >
-          <Text style={stylesHome.buttonText}>Test</Text>
+          <Text style={stylesHome.buttonText}>TestInput</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+            style={stylesHome.button}
+            onPress={() => this.props.navigation.navigate('TestView')}
+        >
+          <Text style={stylesHome.buttonText}>TestView</Text>
         </TouchableOpacity>
       </View>
     )
