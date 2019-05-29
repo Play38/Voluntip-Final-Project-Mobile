@@ -6,26 +6,29 @@ import styles from './containerStyle'
 
 let addItem = item => {
     let flag = true
-    db.ref('/items').on('value', snapshot => {
+    db.ref('/users').on('value', snapshot => {
         let data = Object.values(snapshot.val())
         for (d in data){
                 if(item.name === data[d].user.name){
-                Alert.alert('User allready exists')
+                    this.setState({
+                        err_msg: 'User allready exists'
+                    });
                 flag = false
             }
         }
         if(flag){
-            db.ref('/items').push({
+            db.ref('/users').push({
                 user: item
             });
-            Alert.alert('Singed up successfully')
+            Alert.alert('Singed up successfully...\n Redirecting to home page')
         }
     })
 };
 
 export default class App extends Component {
     state = {
-        name: ''
+        name: '',
+        err_msg: ''
     };
 
     handleChangeUserName = e => {
@@ -38,8 +41,25 @@ export default class App extends Component {
             pass: e.nativeEvent.text
         });
     };
+    handleChangePass2 = e => {
+        this.setState({
+            pass2: e.nativeEvent.text
+        });
+    };
     handleSubmit = () => {
         let user= Object()
+        if(this.state.pass != this.state.pass2){
+            this.setState({
+                err_msg: "Passwords does not match"
+            });
+            return
+        }
+        if(/\s/.test(this.state.name)){
+            this.setState({
+                err_msg: "Username must not include spaces"
+            });
+            return
+        }
         user.name = this.state.name
         user.password = this.state.pass
         addItem(user);
@@ -48,16 +68,18 @@ export default class App extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={stylesTest.title}>Add Item</Text>
+                <Text style={stylesTest.title}>Sign Up</Text>
                 <TextInput style={stylesTest.itemInput} onChange={this.handleChangeUserName} />
                 <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass} />
+                <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass2} />
                 <TouchableOpacity
                     style={stylesTest.button}
                     underlayColor="white"
                     onPress={this.handleSubmit}
                 >
-                    <Text style={styles.buttonText}>Add</Text>
+                    <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
+                <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
             </View>
         );
     }
@@ -95,5 +117,10 @@ const stylesTest = StyleSheet.create({
         marginTop: 10,
         width:50,
         justifyContent: 'center'
+    },
+    errorMassage: {
+        fontSize: 25,
+        marginTop: 10,
+        alignSelf: 'center'
     }
 });

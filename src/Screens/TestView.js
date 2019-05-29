@@ -4,7 +4,7 @@ import styles from './containerStyle'
 import ItemComponent from '../ItemComponent';
 import { db } from '../config';
 
-let itemsRef = db.ref('/items');
+let itemsRef = db.ref('/users');
 
 export default class App extends Component {
     static navigationOptions = {
