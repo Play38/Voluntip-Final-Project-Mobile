@@ -6,13 +6,12 @@ import styles from './containerStyle'
 
 let addItem = item => {
     let flag = true
+
     db.ref('/users').on('value', snapshot => {
         let data = Object.values(snapshot.val())
         for (d in data){
                 if(item.name === data[d].user.name){
-                    this.setState({
-                        err_msg: 'User allready exists'
-                    });
+                    Alert.alert('User allready exists')
                 flag = false
             }
         }
