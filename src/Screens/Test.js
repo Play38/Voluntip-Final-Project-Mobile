@@ -3,10 +3,24 @@ import { Text, View, Alert, TouchableOpacity, TextInput, StyleSheet } from 'reac
 import { db } from '../config';
 import styles from './containerStyle'
 
+
 let addItem = item => {
-    db.ref('/items').push({
-        name: item
-    });
+    let flag = true
+    db.ref('/items').on('value', snapshot => {
+        let data = Object.values(snapshot.val())
+        for (d in data){
+                if(item.name === data[d].user.name){
+                Alert.alert('User allready exists')
+                flag = false
+            }
+        }
+        if(flag){
+            db.ref('/items').push({
+                user: item
+            });
+            Alert.alert('Singed up successfully')
+        }
+    })
 };
 
 export default class App extends Component {
@@ -14,21 +28,29 @@ export default class App extends Component {
         name: ''
     };
 
-    handleChange = e => {
+    handleChangeUserName = e => {
         this.setState({
             name: e.nativeEvent.text
         });
     };
+    handleChangePass = e => {
+        this.setState({
+            pass: e.nativeEvent.text
+        });
+    };
     handleSubmit = () => {
-        addItem(this.state.name);
-        Alert.alert('Item saved successfully');
+        let user= Object()
+        user.name = this.state.name
+        user.password = this.state.pass
+        addItem(user);
     };
 
     render() {
         return (
             <View style={styles.container}>
                 <Text style={stylesTest.title}>Add Item</Text>
-                <TextInput style={stylesTest.itemInput} onChange={this.handleChange} />
+                <TextInput style={stylesTest.itemInput} onChange={this.handleChangeUserName} />
+                <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass} />
                 <TouchableOpacity
                     style={stylesTest.button}
                     underlayColor="white"
@@ -50,14 +72,15 @@ const stylesTest = StyleSheet.create({
     itemInput: {
         height: 50,
         padding: 4,
-        width:'100%',
-        marginRight: 5,
+        width:'80%',
+        alignSelf: "center",
+        marginBottom: 25,
         fontSize: 23,
         borderWidth: 1,
         borderColor: 'white',
         borderRadius: 8,
         color: '#5374d6',
-        backgroundColor:'green'
+        backgroundColor:'white'
     },
     buttonText: {
         fontSize: 25,
