@@ -32,7 +32,7 @@ export default class App extends Component {
         <Text style={styles.heading}>Home Screen</Text>
         <TouchableOpacity
           style={stylesHome.button}
-          onPress={() => this.props.navigation.navigate('Test')}
+          onPress={() => this.props.navigation.navigate('Login')}
         >
           <Text style={stylesHome.buttonText}>TestInput</Text>
         </TouchableOpacity>

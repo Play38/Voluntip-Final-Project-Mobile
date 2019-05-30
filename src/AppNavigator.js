@@ -1,12 +1,14 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 import HomeScreen from './Screens/Home'
-import TestScreen from './Screens/Test'
+import LoginScreen from './Screens/Login'
 import TestViewScreen from './Screens/TestView'
+import MainPageScreen from './Screens/MainPage'
 
 const AppNavigator = createStackNavigator({
   Home: HomeScreen,
-  Test: TestScreen,
+  Login: LoginScreen,
   TestView:TestViewScreen,
+  MainPage: MainPageScreen,
 })
 
 export default createAppContainer(AppNavigator)
