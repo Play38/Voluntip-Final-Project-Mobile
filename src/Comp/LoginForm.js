@@ -3,39 +3,18 @@ import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-
 import styles from "../Screens/containerStyle";
 import React, {Component} from 'react';
 
-let goLog = 0
 
 
-let LoginUser = item => {
-    let flag = true
-    db.ref('/users').on('value', snapshot => {
-        let data = Object.values(snapshot.val())
-        for (d in data){
-            if(item.name === data[d].user.name){
-                flag = false
-            }
-        }
-        if(!flag){
 
-            Alert.alert('Logged in successfully...\n Redirecting to home page')
-            goLog = 1
-        }
-        else
-        {
-            Alert.alert('Password is inncorrect or not \n such user found')
-        }
-    })
-};
 
 export default class LoginForm extends React.Component {
-    constructor(props) {
-        super(props)
 
-    }
     state = {
         name: '',
         err_msg: '',
     };
+
+
 
     handleChangeUserName = e => {
         this.setState({
@@ -49,6 +28,28 @@ export default class LoginForm extends React.Component {
     };
 
     handleSubmit = () => {
+
+        let LoginUser = item => {
+            let flag = true
+            db.ref('/users').on('value', snapshot => {
+                let data = Object.values(snapshot.val())
+                for (d in data){
+                    if(item.name === data[d].user.name){
+                        flag = false
+                    }
+                }
+                if(!flag){
+
+                    Alert.alert('Logged in successfully...\n Redirecting to home page')
+                    this.props.onSelectLogin(1)
+
+                }
+                else
+                {
+                    Alert.alert('Password is inncorrect or not \n such user found')
+                }
+            })
+        };
         let user= Object()
         if(/\s/.test(this.state.name)){
             this.setState({
@@ -58,15 +59,12 @@ export default class LoginForm extends React.Component {
         }
         user.name = this.state.name
         user.password = this.state.pass
+
+
         LoginUser(user);
     };
 
     render() {
-        if(goLog)
-        {
-            this.props.onSelectLogin(1)
-            goLog = 0
-        }
         return (
             <View style={styles.container}>
 

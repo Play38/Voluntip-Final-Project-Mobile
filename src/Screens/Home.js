@@ -34,7 +34,7 @@ export default class App extends Component {
           style={stylesHome.button}
           onPress={() => this.props.navigation.navigate('Login')}
         >
-          <Text style={stylesHome.buttonText}>TestInput</Text>
+          <Text style={stylesHome.buttonText}>Login Screen</Text>
         </TouchableOpacity>
         <TouchableOpacity
             style={stylesHome.button}
