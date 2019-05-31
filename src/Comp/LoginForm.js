@@ -3,7 +3,7 @@ import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-
 import styles from "../Screens/containerStyle";
 import React, {Component} from 'react';
 
-
+let goLog = 0
 
 
 let LoginUser = item => {
@@ -18,7 +18,7 @@ let LoginUser = item => {
         if(!flag){
 
             Alert.alert('Logged in successfully...\n Redirecting to home page')
-            this.props.onSelectLogin(1)
+            goLog = 1
         }
         else
         {
@@ -28,6 +28,10 @@ let LoginUser = item => {
 };
 
 export default class LoginForm extends React.Component {
+    constructor(props) {
+        super(props)
+
+    }
     state = {
         name: '',
         err_msg: '',
@@ -58,8 +62,13 @@ export default class LoginForm extends React.Component {
     };
 
     render() {
+        if(goLog)
+        {
+            this.props.onSelectLogin(1)
+        }
         return (
             <View style={styles.container}>
+
                 <Text style={stylesTest.title}>Login</Text>
                 <TextInput style={stylesTest.itemInput} onChange={this.handleChangeUserName} />
                 <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass} />

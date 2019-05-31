@@ -3,8 +3,8 @@ import {Text, TouchableOpacity, View} from 'react-native'
 import SignUp from '../Comp/SignUp'
 import LoginForm from '../Comp/LoginForm'
 import styles from './containerStyle'
-
-export default class App extends React.Component {
+let login = 0
+export default class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -13,7 +13,8 @@ export default class App extends React.Component {
         }
     }
     handleLogin = (loginValue) => {
-        this.setState({login: loginValue});
+        //this.setState({login: loginValue});
+        login = loginValue
     }
     handlePress = () => {
         this.setState({mode: 1})
@@ -40,7 +41,7 @@ export default class App extends React.Component {
                 {this.state.mode === 1 && (
                     <SignUp/>
                 )}
-                {this.state.login ===1 && this.props.navigation.navigate('MainPage')}
+                {login ===1 && this.props.navigation.navigate('MainPage')}
 
             </View>
         );
