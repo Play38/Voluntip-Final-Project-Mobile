@@ -65,6 +65,7 @@ export default class LoginForm extends React.Component {
         if(goLog)
         {
             this.props.onSelectLogin(1)
+            goLog = 0
         }
         return (
             <View style={styles.container}>

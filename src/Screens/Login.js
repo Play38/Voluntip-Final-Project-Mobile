@@ -14,11 +14,14 @@ export default class App extends Component {
     }
     handleLogin = (loginValue) => {
         //this.setState({login: loginValue});
-        login = loginValue
+        this.props.navigation.navigate('MainPage')
     }
     handlePress = () => {
         this.setState({mode: 1})
     };
+
+
+
 
     render() {
         return (
@@ -41,7 +44,6 @@ export default class App extends Component {
                 {this.state.mode === 1 && (
                     <SignUp/>
                 )}
-                {login ===1 && this.props.navigation.navigate('MainPage')}
 
             </View>
         );
