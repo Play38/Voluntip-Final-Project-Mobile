@@ -1,8 +1,8 @@
 import {db} from "../config";
 import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-import styles from "../Screens/containerStyle";
+import styles from "./Styles/containerStyle";
 import React, {Component} from 'react';
-
+import stylesTest from '../Comp/Styles/LoginStyle'
 
 
 
@@ -63,6 +63,9 @@ export default class LoginForm extends React.Component {
 
         LoginUser(user);
     };
+    handlePress = () => {
+        this.props.onSelectLogin(2)
+    };
 
     render() {
         return (
@@ -78,48 +81,15 @@ export default class LoginForm extends React.Component {
                 >
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style = {stylesTest.button}
+                    underlayColor="white"
+                    onPress={this.handlePress}
+                >
+                    <Text style={styles.buttonText}>Sign Up</Text>
+                </TouchableOpacity>
                 <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
             </View>
         );
     }
 }
-
-const stylesTest = StyleSheet.create({
-    title: {
-        marginBottom: 20,
-        fontSize: 25,
-        textAlign: 'center'
-    },
-    itemInput: {
-        height: 50,
-        padding: 4,
-        width:'80%',
-        alignSelf: "center",
-        marginBottom: 25,
-        fontSize: 23,
-        borderWidth: 1,
-        borderColor: 'white',
-        borderRadius: 8,
-        color: '#5374d6',
-        backgroundColor:'white'
-    },
-    buttonText: {
-        fontSize: 25,
-        color: '#5374d6',
-        alignSelf: 'center'
-    },
-    button: {
-        color:'#5374d6',
-        height: 50,
-        flexDirection: 'row',
-        backgroundColor: 'red',
-        marginTop: 10,
-        width:50,
-        justifyContent: 'center'
-    },
-    errorMassage: {
-        fontSize: 25,
-        marginTop: 10,
-        alignSelf: 'center'
-    }
-});

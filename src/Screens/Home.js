@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { PropTypes } from 'prop-types'
-import styles from './containerStyle'
+import styles from '../Comp/Styles/containerStyle'
 const stylesHome = StyleSheet.create({
   button: {
     backgroundColor: '#0598fa',

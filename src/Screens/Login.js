@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import {Text, TouchableOpacity, View} from 'react-native'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import SignUp from '../Comp/SignUp'
 import LoginForm from '../Comp/LoginForm'
-import styles from './containerStyle'
+import styles from '../Comp/Styles/containerStyle'
 export default class App extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +12,10 @@ export default class App extends Component {
     }
     handleLogin = (loginValue) => {
         this.setState({login: loginValue});
-        this.props.navigation.navigate('MainPage')
+        if(loginValue === 1)
+            this.props.navigation.navigate('MainPage')
+        else if(loginValue === 2)
+            this.setState({mode: 1})
         this.setState({login: 0});
     }
     handlePress = () => {
@@ -28,19 +31,8 @@ export default class App extends Component {
 
                     <LoginForm onSelectLogin={this.handleLogin}/>
                 )}
-                {this.state.mode === 0 && (
-
-                    <TouchableOpacity
-                        style = {{bottom: 0}}
-                        underlayColor="white"
-                        onPress={this.handlePress}
-                    >
-                        <Text style={styles.buttonText}>Sign Up</Text>
-                    </TouchableOpacity>
-
-                )}
                 {this.state.mode === 1 && (
-                    <SignUp/>
+                    <SignUp onSelectLogin={this.handleLogin}/>
                 )}
 
             </View>
