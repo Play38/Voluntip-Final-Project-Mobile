@@ -14,8 +14,6 @@ export default class LoginForm extends React.Component {
         err_msg: '',
     };
 
-
-
     handleChangeUserName = e => {
         this.setState({
             name: e.nativeEvent.text
@@ -28,16 +26,16 @@ export default class LoginForm extends React.Component {
     };
 
     handleSubmit = () => {
-
         let LoginUser = item => {
             let flag = true
             db.ref('/users').on('value', snapshot => {
                 let data = Object.values(snapshot.val())
                 for (d in data){
-                    if(item.name === data[d].user.name){
+                    if(item.name === data[d].username){
                         flag = false
                     }
                 }
+
                 if(!flag){
 
                     Alert.alert('Logged in successfully...\n Redirecting to home page')

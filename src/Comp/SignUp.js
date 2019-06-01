@@ -8,7 +8,8 @@ import stylesTest from '../Comp/Styles/LoginStyle'
 export default class SignUp extends Component {
     state = {
         name: '',
-        err_msg: ''
+        err_msg: '',
+        pass: ''
     };
 
     handleChangeUserName = e => {
@@ -29,22 +30,33 @@ export default class SignUp extends Component {
     handleSubmit = () => {
         let LoginUser = item => {
             let flag = true
-
             db.ref('/users').on('value', snapshot => {
                 let data = Object.values(snapshot.val())
                 for (d in data){
-                    if(item.name === data[d].user.name){
+                    if(item.name === data[d].username){
                         Alert.alert('User already exists')
                         flag = false
                     }
                 }
                 if(flag){
-                    Alert.alert('Singed up successfully...\n Redirecting to home page')
-                    this.props.onSelectLogin(1)
+                    db.ref('/users').push({
+                        username: item.name,
+                        password: item.password,
+                        coins: item.coins
+                    })
+                    Alert.alert('Signed up successfully...\n Redirecting to home page')
                 }
             })
         };
+
+
         let user= Object()
+        if(this.state.pass === '' || this.state.name === ''){
+            this.setState({
+                err_msg: "Fileds cannot be empty"
+            });
+            return
+        }
         if(this.state.pass !== this.state.pass2){
             this.setState({
                 err_msg: "Passwords does not match"
@@ -57,6 +69,7 @@ export default class SignUp extends Component {
             });
             return
         }
+        user.coins = 0
         user.name = this.state.name
         user.password = this.state.pass
         LoginUser(user);

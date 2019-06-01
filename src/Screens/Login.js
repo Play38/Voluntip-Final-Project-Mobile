@@ -13,7 +13,7 @@ export default class App extends Component {
     handleLogin = (loginValue) => {
         this.setState({login: loginValue});
         if(loginValue === 1)
-            this.props.navigation.navigate('MainPage')
+            this.props.navigation.navigate('MainPage', {})
         else if(loginValue === 2)
             this.setState({mode: 1})
         this.setState({login: 0});
@@ -28,7 +28,6 @@ export default class App extends Component {
         return (
             <View style={styles.container}>
                 {this.state.mode === 0 &&(
-
                     <LoginForm onSelectLogin={this.handleLogin}/>
                 )}
                 {this.state.mode === 1 && (
