@@ -29,7 +29,8 @@ export default class MainPage extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Hello</Text>
+                <Text>username: {this.props.navigation.getParam('username', 0)}</Text>
+                <Text>coins: {this.props.navigation.getParam('userCoins', 10)}</Text>
             </View>
         )
     }

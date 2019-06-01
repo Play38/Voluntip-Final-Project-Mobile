@@ -8,7 +8,7 @@ export default StyleSheet.create({
     itemInput: {
         height: 50,
         padding: 4,
-        width:300,
+        width:'95%',
         alignSelf: "center",
         marginBottom: 25,
         fontSize: 23,
@@ -19,18 +19,34 @@ export default StyleSheet.create({
         backgroundColor:'white'
     },
     buttonText: {
-        fontSize: 25,
-        color: '#5374d6',
+        fontSize: 20,
+        color: 'white',
         alignSelf: 'center'
     },
     button: {
         color:'#5374d6',
         height: 50,
         flexDirection: 'row',
-        backgroundColor: 'red',
+        backgroundColor: '#70c9f5',
         marginTop: 10,
-        width:50,
+        width:'95%',
         justifyContent: 'center',
+    },
+    buttonSign: {
+        position:'absolute',
+        bottom:0,
+        color:'#5374d6',
+        height: 50,
+        flexDirection: 'row',
+        borderTopWidth: 0.5,
+        marginTop: 10,
+        width:'100%',
+        justifyContent: 'center',
+    },
+    buttonTextSign: {
+        fontSize: 20,
+        color: 'gray',
+        alignSelf: 'center'
     },
     errorMassage: {
         fontSize: 25,

@@ -21,6 +21,7 @@ export default class App extends Component {
 
     handleSubmit = () => {
         let LoginUser = item => {
+            let object
             let flag = true
             db.ref('/users').on('value', snapshot => {
                 let data = Object.values(snapshot.val())
@@ -29,14 +30,16 @@ export default class App extends Component {
                         console.log(item.pass)
                         if(item.password === data[d].password ) {
                         flag = false
+                            object = data[d]
                         }
                     }
                 }
 
                 if(!flag){
-
                     Alert.alert('Logged in successfully...\n Redirecting to home page')
-                    this.props.navigation.navigate('MainPage', {})
+                    this.props.navigation.navigate('MainPage', {
+                        username: object.username,
+                        userCoins: object.coins})
 
                 }
                 else
@@ -67,21 +70,21 @@ export default class App extends Component {
             <View style={styles.container}>
 
                 <Text style={stylesTest.title}>Login</Text>
-                <TextInput style={stylesTest.itemInput} onChange={this.handleChangeUserName} />
-                <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass} />
+                <TextInput style={stylesTest.itemInput} placeholder="Username" onChange={this.handleChangeUserName} />
+                <TextInput style={stylesTest.itemInput} placeholder="Password" onChange={this.handleChangePass} />
                 <TouchableOpacity
                     style={stylesTest.button}
                     underlayColor="white"
                     onPress={this.handleSubmit}
                 >
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={stylesTest.buttonText}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style = {stylesTest.button}
+                    style = {stylesTest.buttonSign}
                     underlayColor="white"
                     onPress={this.handlePress}
                 >
-                    <Text style={styles.buttonText}>Sign Up</Text>
+                    <Text style={stylesTest.buttonTextSign}>Sign Up</Text>
                 </TouchableOpacity>
                 <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
             </View>

@@ -45,7 +45,9 @@ export default class SignUp extends Component {
                         coins: item.coins
                     })
                     Alert.alert('Signed up successfully...\n Redirecting to home page')
-                    this.props.navigation.navigate('MainPage', {})
+                    this.props.navigation.navigate('MainPage', {
+                        username: item.username,
+                        userCoins: item.coins})
                 }
             })
         };
@@ -80,15 +82,15 @@ export default class SignUp extends Component {
         return (
             <View style={styles.container}>
                 <Text style={stylesTest.title}>Sign Up</Text>
-                <TextInput style={stylesTest.itemInput} onChange={this.handleChangeUserName} />
-                <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass} />
-                <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass2} />
+                <TextInput style={stylesTest.itemInput} placeholder="Username" onChange={this.handleChangeUserName} />
+                <TextInput style={stylesTest.itemInput} placeholder="Password" onChange={this.handleChangePass} />
+                <TextInput style={stylesTest.itemInput} placeholder="Enter password again" onChange={this.handleChangePass2} />
                 <TouchableOpacity
                     style={stylesTest.button}
                     underlayColor="white"
                     onPress={this.handleSubmit}
                 >
-                    <Text style={styles.buttonText}>Sign Up</Text>
+                    <Text style={stylesTest.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
                 <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
             </View>
