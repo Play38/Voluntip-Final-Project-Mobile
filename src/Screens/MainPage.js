@@ -14,23 +14,26 @@ export default class MyComponent extends React.Component {
   state = {
     index: 0,
     routes: [
+      { key : 'home', title: 'Home', icon: 'home'},
       { key: 'store', title: 'Store', icon: 'shopping-cart' },
       { key: 'rewards', title: 'My Rewards', icon: 'shopping-basket' },
       { key: 'code', title: 'Enter Code', icon: 'code' },
     ],
   };
-   StoreRoute = () =>  <View style={styles.container}>
-   <Text>username: {this.props.navigation.getParam('username', 0)}</Text>
-   <Text>coins: {this.props.navigation.getParam('userCoins', 10)}</Text>
+    HomeRoute= () =>  <View style={styles.container}>
+    <Text>username: {this.props.navigation.getParam('username', 0)}</Text>
+    <Text>coins: {this.props.navigation.getParam('userCoins', 10)}</Text>
     </View>
+    StoreRoute = () => <Text>TODO</Text>
 
-   RewardsRoute = () => <Text>TODO</Text>;
+    RewardsRoute = () => <Text>TODO</Text>
 
-   CodeRoute = () => <Text>TODO</Text>;
+    CodeRoute = () => <Text>TODO</Text>
 
   _handleIndexChange = index => this.setState({ index });
 
   _renderScene = BottomNavigation.SceneMap({
+    home: this.HomeRoute,
     store: this.StoreRoute,
     rewards: this.RewardsRoute,
     code: this.CodeRoute,
