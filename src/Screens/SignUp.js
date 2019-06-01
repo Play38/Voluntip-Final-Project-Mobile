@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
-import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
-import styles from '../Comp/Styles/containerStyle'
 import {db} from "../config";
-import stylesTest from "../Comp/Styles/LoginStyle";
-export default class App extends Component {
+import {Alert, Text, TextInput, TouchableOpacity, View} from "react-native";
+import styles from "../Comp/Styles/containerStyle";
+import React, {Component} from 'react';
+import stylesTest from '../Comp/Styles/LoginStyle'
+
+
+export default class SignUp extends Component {
     state = {
+        name: '',
         err_msg: '',
+        pass: ''
     };
 
     handleChangeUserName = e => {
@@ -18,7 +22,11 @@ export default class App extends Component {
             pass: e.nativeEvent.text
         });
     };
-
+    handleChangePass2 = e => {
+        this.setState({
+            pass2: e.nativeEvent.text
+        });
+    };
     handleSubmit = () => {
         let LoginUser = item => {
             let flag = true
@@ -26,60 +34,59 @@ export default class App extends Component {
                 let data = Object.values(snapshot.val())
                 for (d in data){
                     if(item.name === data[d].username){
-                        console.log(item.pass)
-                        if(item.password === data[d].password ) {
+                        Alert.alert('User already exists')
                         flag = false
-                        }
                     }
                 }
-
-                if(!flag){
-
-                    Alert.alert('Logged in successfully...\n Redirecting to home page')
+                if(flag){
+                    db.ref('/users').push({
+                        username: item.name,
+                        password: item.password,
+                        coins: item.coins
+                    })
+                    Alert.alert('Signed up successfully...\n Redirecting to home page')
                     this.props.navigation.navigate('MainPage', {})
-
-                }
-                else
-                {
-                    Alert.alert('Password is inncorrect or not \n such user found')
                 }
             })
         };
+
+
         let user= Object()
+        if(this.state.pass === '' || this.state.name === ''){
+            this.setState({
+                err_msg: "Fields cannot be empty"
+            });
+            return
+        }
+        if(this.state.pass !== this.state.pass2){
+            this.setState({
+                err_msg: "Passwords does not match"
+            });
+            return
+        }
         if(/\s/.test(this.state.name)){
             this.setState({
                 err_msg: "Username must not include spaces"
             });
             return
         }
+        user.coins = 0
         user.name = this.state.name
         user.password = this.state.pass
-
-
         LoginUser(user);
-    };
-    handlePress = () => {
-        this.props.navigation.navigate('SignUp', {})
     };
 
     render() {
         return (
             <View style={styles.container}>
-
-                <Text style={stylesTest.title}>Login</Text>
+                <Text style={stylesTest.title}>Sign Up</Text>
                 <TextInput style={stylesTest.itemInput} onChange={this.handleChangeUserName} />
                 <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass} />
+                <TextInput style={stylesTest.itemInput} onChange={this.handleChangePass2} />
                 <TouchableOpacity
                     style={stylesTest.button}
                     underlayColor="white"
                     onPress={this.handleSubmit}
-                >
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style = {stylesTest.button}
-                    underlayColor="white"
-                    onPress={this.handlePress}
                 >
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
