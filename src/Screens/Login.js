@@ -44,7 +44,7 @@ export default class App extends Component {
                 }
                 else
                 {
-                    Alert.alert('Password is inncorrect or not \n such user found')
+                    Alert.alert('Password is inncorrect or no\n such user found')
                 }
             })
         };
@@ -79,6 +79,7 @@ export default class App extends Component {
                 >
                     <Text style={stylesTest.buttonText}>Login</Text>
                 </TouchableOpacity>
+                <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
                 <TouchableOpacity
                     style = {stylesTest.buttonSign}
                     underlayColor="white"
@@ -86,7 +87,6 @@ export default class App extends Component {
                 >
                     <Text style={stylesTest.buttonTextSign}>Sign Up</Text>
                 </TouchableOpacity>
-                <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
             </View>
         );
     }
