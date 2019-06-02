@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { PropTypes } from 'prop-types'
 import styles from '../Comp/Styles/containerStyle'
 import { BottomNavigation } from 'react-native-paper';
-
-export default class MyComponent extends React.Component {
+import RedeemPage from './RedeemPage'
+export default class MyComponent extends Component {
     static propTypes = {
         navigation: PropTypes.any.isRequired
     }
@@ -17,7 +17,7 @@ export default class MyComponent extends React.Component {
       { key : 'home', title: 'Home', icon: 'home'},
       { key: 'store', title: 'Store', icon: 'shopping-cart' },
       { key: 'rewards', title: 'My Rewards', icon: 'shopping-basket' },
-      { key: 'code', title: 'Enter Code', icon: 'code' },
+      { key: 'code', title: 'Redeem Code', icon: 'code' },
     ],
   };
     HomeRoute= () =>  <View style={styles.container}>
@@ -28,7 +28,7 @@ export default class MyComponent extends React.Component {
 
     RewardsRoute = () => <Text>TODO</Text>
 
-    CodeRoute = () => <Text>TODO</Text>
+    CodeRoute = () => <RedeemPage id = {this.props.navigation.getParam('username', 0)}/>
 
   _handleIndexChange = index => this.setState({ index });
 
@@ -47,6 +47,6 @@ export default class MyComponent extends React.Component {
         renderScene={this._renderScene}
         barStyle = {{ backgroundColor: '#87ceeb' }}
       />
-    );
+    )
   }
 }

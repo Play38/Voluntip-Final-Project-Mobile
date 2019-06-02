@@ -27,7 +27,6 @@ export default class App extends Component {
                 let data = Object.values(snapshot.val())
                 for (d in data){
                     if(item.name === data[d].username){
-                        console.log(item.pass)
                         if(item.password === data[d].password ) {
                         flag = false
                             object = data[d]
