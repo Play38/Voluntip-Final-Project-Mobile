@@ -25,18 +25,16 @@ export default class RedeemPage extends Component {
             })
         }
         else{
-            db.ref(`/users`)
-            .orderByChild("username")
-            .equalTo(this.state.id)
-            .once("value")
-            .then(snapshot => {
-                if (snapshot.val()) {
-                    var name =Object.getOwnPropertyNames(snapshot.val())
-                    var data = snapshot.val()
-                    data.coins += 100
-                    db.ref(`/users` + String(name)).update({coins: data.coins})
-                }
-            })
+            var ref = db.ref('/users')
+            let data, key
+            ref.orderByChild('username').equalTo(this.state.id).on("value", function(snapshot) {
+                data = Object.values(snapshot.val())
+                snapshot.forEach((function(child) {
+                 key = child.key
+                 console.log(key)
+                })
+            )})
+            db.ref('/users').child(String(key)).update({coins: data[0].coins+100})
             Alert.alert('You have been credited with 100 Coins')
         }
     }

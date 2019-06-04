@@ -35,7 +35,7 @@ export default class App extends Component {
                 }
 
                 if(!flag){
-                    Alert.alert('Logged in successfully...\n Redirecting to home page')
+                    Alert.alert('Logged in successfully...\nRedirecting to home page')
                     this.props.navigation.navigate('MainPage', {
                         username: object.username,
                         userCoins: object.coins})
@@ -43,7 +43,7 @@ export default class App extends Component {
                 }
                 else
                 {
-                    Alert.alert('Password is inncorrect or no\n such user found')
+                    Alert.alert('Password is inncorrect or no\nsuch user found')
                 }
             })
         };
