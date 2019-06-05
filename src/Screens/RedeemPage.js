@@ -12,13 +12,13 @@ export default class RedeemPage extends Component {
         }
     }
 
-    handleChange = e => {
+    handleChange12 = e => {
         this.setState({
             input: e.nativeEvent.text
         });
     };
 
-    handleSubmit = () =>{
+    handleSubmit12 = () =>{
         if(this.state.input !== '1234'){
             this.setState({
                 err_msg: 'Code is invalid'
@@ -31,7 +31,6 @@ export default class RedeemPage extends Component {
                 data = Object.values(snapshot.val())
                 snapshot.forEach((function(child) {
                  key = child.key
-                 console.log(key)
                 })
             )})
             db.ref('/users').child(String(key)).update({coins: data[0].coins+100})
@@ -44,11 +43,11 @@ export default class RedeemPage extends Component {
     <Text style = {styles.greetTxt}>Hello {this.state.id}!</Text>
     <Text style = {styles.descTxt}>Please enter the code you recived in the box
      bellow to redeem the reward for volunteering</Text>
-     <TextInput style={styles.itemInput} placeholder="Enter Code" onChange={this.handleChange} />
+     <TextInput style={styles.itemInput} placeholder="Enter Code" onChange={this.handleChange12} />
      <TouchableOpacity
                     style={styles.button}
                     underlayColor="white"
-                    onPress={this.handleSubmit}
+                    onPress={this.handleSubmit12}
     >
         <Text style={styles.buttonText}>Submit</Text>
     </TouchableOpacity>

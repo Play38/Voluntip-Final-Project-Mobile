@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types'
 import styles from '../Comp/Styles/containerStyle'
 import { BottomNavigation } from 'react-native-paper';
 import RedeemPage from './RedeemPage'
+import Store from './Store'
 export default class MyComponent extends Component {
     static propTypes = {
         navigation: PropTypes.any.isRequired
@@ -24,7 +25,7 @@ export default class MyComponent extends Component {
     <Text>username: {this.props.navigation.getParam('username', 0)}</Text>
     <Text>coins: {this.props.navigation.getParam('userCoins', 10)}</Text>
     </View>
-    StoreRoute = () => <Text>TODO</Text>
+    StoreRoute = () => <Store id = {this.props.navigation.getParam('username', 0)}/>
 
     RewardsRoute = () => <Text>TODO</Text>
 

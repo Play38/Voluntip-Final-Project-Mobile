@@ -9,3 +9,4 @@ export default class App extends Component {
     return <AppContainer />
   }
 }
+console.disableYellowBox = true
