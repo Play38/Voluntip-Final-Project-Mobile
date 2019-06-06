@@ -17,7 +17,6 @@ export default class MyComponent extends Component {
     routes: [
       { key : 'home', title: 'Home', icon: 'home'},
       { key: 'store', title: 'Store', icon: 'shopping-cart' },
-      { key: 'rewards', title: 'My Rewards', icon: 'shopping-basket' },
       { key: 'code', title: 'Redeem Code', icon: 'code' },
     ],
   };
@@ -27,8 +26,6 @@ export default class MyComponent extends Component {
     </View>
     StoreRoute = () => <Store id = {this.props.navigation.getParam('username', 0)}/>
 
-    RewardsRoute = () => <Text>TODO</Text>
-
     CodeRoute = () => <RedeemPage id = {this.props.navigation.getParam('username', 0)}/>
 
   _handleIndexChange = index => this.setState({ index });
@@ -36,7 +33,6 @@ export default class MyComponent extends Component {
   _renderScene = BottomNavigation.SceneMap({
     home: this.HomeRoute,
     store: this.StoreRoute,
-    rewards: this.RewardsRoute,
     code: this.CodeRoute,
   });
 

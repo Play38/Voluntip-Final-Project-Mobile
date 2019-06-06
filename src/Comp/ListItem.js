@@ -10,8 +10,18 @@ export default class Store extends Component {
           image: this.props.img,
           name: this.props.name,
           price: this.props.price,
+          updateCoins: this.props.update
         }
     }
+  makeid(length) {
+      var result           = '';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+   }
   handlePurchase = () =>{
     var ref = db.ref('/users')
     let data, key, price = this.state.price
@@ -25,8 +35,9 @@ export default class Store extends Component {
       Alert.alert("Not enough coins")
     }
     else{
+      this.state.updateCoins(data[0].coins - price)
       db.ref('/users').child(String(key)).update({coins: data[0].coins - price})
-      Alert.alert(`You Purchased ${this.state.name}`)
+      Alert.alert(`You Purchased ${this.state.name}\nYour code is:${this.makeid(8)}`)
     }
   }
   render() {
