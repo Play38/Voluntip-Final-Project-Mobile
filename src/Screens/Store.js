@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Text, View, Alert , ScrollView, StyleSheet,TouchableOpacity} from 'react-native'
-import {db} from "../config";
+import {db} from "../config"
 import ListItem from "../Comp/ListItem"
 export default class Store extends Component {
     constructor(props) {
@@ -30,9 +30,17 @@ export default class Store extends Component {
         <Text style = {styles.balance}>Balance: {this.state.coins} coins</Text>
     </View>
     <ListItem 
+    id = {this.state.id}
     coins = {this.state.coins}
-    desc = {"bbbbbbb"}
-    name = {"Aaaaaa"}
+    price = {100}
+    name = {"AAAAAAA"}
+    img = {'https://facebook.github.io/react-native/docs/assets/favicon.png'}
+    />
+    <ListItem 
+    id = {this.state.id}
+    coins = {this.state.coins}
+    price = {200}
+    name = {"BBBBBBB"}
     img = {'https://facebook.github.io/react-native/docs/assets/favicon.png'}
     />
     </ScrollView>
@@ -87,9 +95,4 @@ const styles = StyleSheet.create({
         width:'95%',
         justifyContent: 'center',
     },
-    errorMassage: {
-        fontSize: 25,
-        marginTop: 10,
-        alignSelf: 'center'
-    }
 })
