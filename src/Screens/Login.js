@@ -35,7 +35,7 @@ export default class App extends Component {
                 }
 
                 if(!flag){
-                    Alert.alert('Logged in successfully...\nRedirecting to home page')
+                    //Alert.alert('Logged in successfully...\nRedirecting to home page')
                     this.props.navigation.navigate('MainPage', {
                         username: object.username,
                         userCoins: object.coins})
