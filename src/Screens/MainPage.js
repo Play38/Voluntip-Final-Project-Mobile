@@ -5,8 +5,9 @@ import styles from '../Comp/Styles/containerStyle'
 import { BottomNavigation } from 'react-native-paper';
 import RedeemPage from './RedeemPage'
 import MapView, { Marker } from 'react-native-maps';
-
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+let once = 1
+const myIcon = <Icon name="rocket" size={30} color="#900"  />;
 
 
 function getRandomInt(min, max) {
@@ -21,16 +22,34 @@ export default class MyComponent extends Component {
     this.state = {
       markers: []
     }
-    this.handlePress = this.handlePress.bind(this);
   }
-  handlePress(e) {
+  componentDidMount() {
     this.setState({
-      markers: [
-        ...this.state.markers,
+      markers: [{
+        coordinate:{ latitude: 32.089015, longitude: 34.803732 },
+        cost: `Voluntip coins ${getRandomInt(20, 100)}`,
+        name: 'Lman'
+      },
         {
-          coordinate: e.nativeEvent.coordinate,
-          cost: `Voluntip coins ${getRandomInt(20, 100)}`
-        }
+          coordinate:{ latitude: 32.091713, longitude: 34.798789 },
+          cost: `Voluntip coins ${getRandomInt(20, 100)}`,
+          name: 'Lasot'
+        },
+        {
+          coordinate:{ latitude: 32.128070, longitude: 34.800116 },
+          cost: `Voluntip coins 1`,
+          name: 'Gutty'
+        },
+        {
+          coordinate:{ latitude: 32.084535, longitude: 34.802367 },
+          cost: `Voluntip coins ${getRandomInt(20, 100)}`,
+          name: 'Latet'
+        },
+        {
+          coordinate:{ latitude: 32.094707, longitude: 34.807199 },
+          cost: `Voluntip coins ${getRandomInt(20, 100)}`,
+          name: 'Park Help'
+        },
       ]
     })
   }
@@ -67,6 +86,11 @@ export default class MyComponent extends Component {
     rewards: this.RewardsRoute,
     code: this.CodeRoute,
   });
+//  markers: [{
+//         coordinate: [32.090034,3],
+//         cost: `Voluntip coins ${getRandomInt(20, 100)}`
+//       }]
+
 
 
   render() {
@@ -79,13 +103,15 @@ export default class MyComponent extends Component {
               longitude: 34.803028,
               longitudeDelta: 0
             }}
-            onPress={this.handlePress}
         >
           {this.state.markers.map((marker) => {
             return (
                 <Marker {...marker} >
                   <View style={stylesMap.marker}>
-                    <Text style={stylesMap.text}>{marker.cost}</Text>
+                    <Text style={stylesMap.text}>{marker.name}{'\n'}{marker.cost}</Text>
+                  </View>
+                  <View style = {stylesMap.markIcon}>
+                    <Icon name="map-marker" size={30} color="#900"  />
                   </View>
                 </Marker>
             )
@@ -100,12 +126,15 @@ const stylesMap = StyleSheet.create({
     flex: 1,
   },
   marker: {
-    backgroundColor: "#550bbc",
+    backgroundColor: 'rgba(52, 52, 52, 0.5)',
     padding: 5,
     borderRadius: 5,
   },
   text: {
     color: "#FFF",
     fontWeight: "bold"
+  },
+  markIcon: {
+    paddingLeft:50
   }
 });
