@@ -60,7 +60,7 @@ export default class MyComponent extends Component {
         navigation: PropTypes.any.isRequired
     }
     static navigationOptions = {
-        title: 'Main Page'
+        title: 'Voluntip'
     };
     HomeRoute= () =>  <MapView
         style={stylesMap.container}

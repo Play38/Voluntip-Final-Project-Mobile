@@ -30,24 +30,28 @@ export default class SignUp extends Component {
     handleSubmit = () => {
         let LoginUser = item => {
             let flag = true
+            let newUser = false
             db.ref('/users').on('value', snapshot => {
                 let data = Object.values(snapshot.val())
                 for (d in data){
                     if(item.name === data[d].username){
+                        if (newUser === false)
                         Alert.alert('User already exists')
                         flag = false
                     }
                 }
                 if(flag){
+                    newUser = true
                     db.ref('/users').push({
                         username: item.name,
                         password: item.password,
                         coins: item.coins
                     })
                     Alert.alert('Signed up successfully...\n Redirecting to home page')
-                    this.props.navigation.navigate('MainPage', {
+                    this.props.navigation.replace('MainPage', {
                         username: item.username,
                         userCoins: item.coins})
+
                 }
             })
         };

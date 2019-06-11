@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Text, View, Alert , ScrollView, StyleSheet,TouchableOpacity} from 'react-native'
+import {Text, View, ScrollView, StyleSheet} from 'react-native'
 import {db} from "../config"
 import ListItem from "../Comp/ListItem"
 export default class Store extends Component {
@@ -37,7 +37,7 @@ export default class Store extends Component {
     id = {this.state.id}
     coins = {this.state.coins}
     price = {100}
-    name = {"AAAAAAA"}
+    name = {"Science camp"}
     img = {'https://facebook.github.io/react-native/docs/assets/favicon.png'}
     update = {this.update}
     />
@@ -45,10 +45,18 @@ export default class Store extends Component {
     id = {this.state.id}
     coins = {this.state.coins}
     price = {200}
-    name = {"BBBBBBB"}
+    name = {"Albums"}
     img = {'https://scontent.ftlv6-1.fna.fbcdn.net/v/t1.0-9/62100067_1702640313171655_5939079651627368448_o.jpg?_nc_cat=108&_nc_ht=scontent.ftlv6-1.fna&oh=dcf7721c85d0a96fde8e8598df0bc5bc&oe=5D9A3D29'}
     update = {this.update}
     />
+        <ListItem
+            id = {this.state.id}
+            coins = {this.state.coins}
+            price = {600}
+            name = {"Video Game"}
+            img = {'https://i.pinimg.com/originals/06/71/ce/0671ce5ba3dae0f243221aba73a63e2f.png'}
+            update = {this.update}
+        />
     </ScrollView>
     )
   }
