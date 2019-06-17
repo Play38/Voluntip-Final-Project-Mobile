@@ -67,12 +67,6 @@ export default class RedeemPage extends Component {
     this.handleSubmit12 = this.handleSubmit12.bind(this)
   }
 
-  handleChange12 = e => {
-    this.setState({
-      input: e.nativeEvent.text
-    })
-  }
-
   handleSubmit12() {
     if (this.state.input !== '1234') {
       this.setState({
@@ -106,7 +100,7 @@ export default class RedeemPage extends Component {
         <TextInput
           style={styles.itemInput}
           placeholder="Enter Code"
-          onChange={this.handleChange12}
+          onChangeText={text => this.setState({ input: text })}
         />
         <TouchableOpacity style={styles.button} underlayColor="white" onPress={this.handleSubmit12}>
           <Text style={styles.buttonText}>Submit</Text>
