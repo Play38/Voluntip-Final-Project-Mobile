@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { PropTypes } from 'prop-types'
 import styles from '../Comp/Styles/containerStyle'
-import { db } from '../config'
+import db from '../config'
 import stylesTest from '../Comp/Styles/LoginStyle'
 export default class App extends Component {
   static propTypes = {
@@ -68,13 +68,12 @@ export default class App extends Component {
         <TextInput
           style={stylesTest.itemInput}
           placeholder="Username"
-          onChangeText={text => this.setState({ name: text })}
-          z
+          onChangeText={name => this.setState({ name })}
         />
         <TextInput
           style={stylesTest.itemInput}
           placeholder="Password"
-          onChangeText={text => this.setState({ pass: text })}
+          onChangeText={pass => this.setState({ pass })}
         />
         <TouchableOpacity
           style={stylesTest.button}

@@ -1,4 +1,4 @@
-import { db } from '../config'
+import db from '../config'
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from '../Comp/Styles/containerStyle'
 import React, { Component } from 'react'
@@ -80,17 +80,17 @@ export default class SignUp extends Component {
         <TextInput
           style={stylesTest.itemInput}
           placeholder="Username"
-          onChangeText={text => this.setState({ name: text })}
+          onChangeText={name => this.setState({ name })}
         />
         <TextInput
           style={stylesTest.itemInput}
           placeholder="Password"
-          onChangeText={text => this.setState({ pass: text })}
+          onChangeText={pass => this.setState({ pass })}
         />
         <TextInput
           style={stylesTest.itemInput}
           placeholder="Enter password again"
-          onChangeText={text => this.setState({ pass2: text })}
+          onChangeText={pass2 => this.setState({ pass2 })}
         />
         <TouchableOpacity
           style={stylesTest.button}

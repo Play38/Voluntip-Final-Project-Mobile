@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AppNavigator from './src/AppNavigator'
 import { createAppContainer } from 'react-navigation'
+import { YellowBox } from 'react-native'
 
 const AppContainer = createAppContainer(AppNavigator)
 
@@ -9,4 +10,4 @@ export default class App extends Component {
     return <AppContainer />
   }
 }
-console.disableYellowBox = true
+YellowBox.ignoreWarnings(['Setting a timer for a long', 'Warning'])

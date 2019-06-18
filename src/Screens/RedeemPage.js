@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, Alert, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import { db } from '../config'
+import db from '../config'
 import { PropTypes } from 'prop-types'
 
 const styles = StyleSheet.create({
