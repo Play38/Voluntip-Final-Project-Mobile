@@ -3,7 +3,6 @@ import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import db from '../config'
 import ListItem from '../Comp/ListItem'
 import { PropTypes } from 'prop-types'
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -28,22 +27,32 @@ export default class Store extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: this.props.id
+      id: this.props.id,
+      coins: 0,
+      nom: 0
     }
   }
+
   componentDidMount() {
-    const ref = db.ref('/users')
-    let data
-    ref
-      .orderByChild('username')
-      .equalTo(this.state.id)
-      .on('value', function(snapshot) {
-        data = Object.values(snapshot.val())
+    this._interval = setInterval(() => {
+      const ref = db.ref('/users')
+      let data
+      ref
+        .orderByChild('username')
+        .equalTo(this.state.id)
+        .on('value', function(snapshot) {
+          data = Object.values(snapshot.val())
+        })
+      this.setState({
+        coins: data[0].coins
       })
-    this.setState({
-      coins: data[0].coins
-    })
+    }, 100)
   }
+
+  componentWillUnmount() {
+    clearInterval(this._interval)
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
