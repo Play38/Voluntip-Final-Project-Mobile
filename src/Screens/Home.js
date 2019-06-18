@@ -24,8 +24,8 @@ export default class App extends Component {
     navigation: PropTypes.any.isRequired
   }
   static navigationOptions = {
-    title: 'Home',
-  };
+    title: 'Home'
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -37,8 +37,8 @@ export default class App extends Component {
           <Text style={stylesHome.buttonText}>Login Screen</Text>
         </TouchableOpacity>
         <TouchableOpacity
-            style={stylesHome.button}
-            onPress={() => this.props.navigation.navigate('TestView')}
+          style={stylesHome.button}
+          onPress={() => this.props.navigation.navigate('TestView')}
         >
           <Text style={stylesHome.buttonText}>TestView</Text>
         </TouchableOpacity>
