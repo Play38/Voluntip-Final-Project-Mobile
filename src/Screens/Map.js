@@ -8,6 +8,10 @@ const stylesMap = StyleSheet.create({
   container: {
     flex: 1
   },
+  markerWarp: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   marker: {
     backgroundColor: 'rgba(52, 52, 52, 0.5)',
     padding: 5,
@@ -15,10 +19,11 @@ const stylesMap = StyleSheet.create({
   },
   text: {
     color: '#FFF',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   markIcon: {
-    paddingLeft: 52
+    marginLeft: 0
   }
 })
 
@@ -79,15 +84,17 @@ export default class Map extends Component {
         {this.state.markers.map(marker => {
           return (
             <Marker {...marker} key={marker.id}>
-              <View style={stylesMap.marker}>
-                <Text style={stylesMap.text}>
-                  {marker.name}
-                  {'\n'}
-                  {marker.tips}
-                </Text>
-              </View>
-              <View style={stylesMap.markIcon}>
-                <Icon name="map-marker" size={30} color="#900" />
+              <View style={stylesMap.markerWarp}>
+                <View style={stylesMap.marker}>
+                  <Text style={stylesMap.text}>
+                    {marker.name}
+                    {'\n'}
+                    {marker.tips}
+                  </Text>
+                </View>
+                <View style={stylesMap.markIcon}>
+                  <Icon name="map-marker" size={30} color="#900" />
+                </View>
               </View>
             </Marker>
           )

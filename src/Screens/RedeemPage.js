@@ -100,7 +100,7 @@ export default class RedeemPage extends Component {
         <TextInput
           style={styles.itemInput}
           placeholder="Enter Code"
-          onChangeText={input => this.setState({ input})}
+          onChangeText={input => this.setState({ input })}
         />
         <TouchableOpacity style={styles.button} underlayColor="white" onPress={this.handleSubmit12}>
           <Text style={styles.buttonText}>Submit</Text>

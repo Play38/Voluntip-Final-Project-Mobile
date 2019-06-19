@@ -40,21 +40,21 @@ export default class SignUp extends Component {
             password: item.password,
             coins: item.coins
           })
-          if(once) {
+          if (once) {
             once = 0
             db.ref('/users').on('value', snapshot => {
               const data = Object.values(snapshot.val())
-            for (d in data) {
-              if (item.name === data[d].username) {
-                if (item.password === data[d].password) {
-                  object = data[d]
+              for (d in data) {
+                if (item.name === data[d].username) {
+                  if (item.password === data[d].password) {
+                    object = data[d]
+                  }
                 }
               }
-            }
-            this.props.navigation.replace('MainPage', {
-              username: object.username,
-              userCoins: object.coins
-            })
+              this.props.navigation.replace('MainPage', {
+                username: object.username,
+                userCoins: object.coins
+              })
             })
           }
         }

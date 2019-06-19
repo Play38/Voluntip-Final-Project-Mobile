@@ -38,7 +38,7 @@ export default class App extends Component {
             userCoins: object.coins,
             left: null
           })
-        } else if(once) {
+        } else if (once) {
           once = 0
           Alert.alert(`Password is incorrect or no\nsuch user found`)
         }
