@@ -42,7 +42,6 @@ export default class SignUp extends Component {
           })
           if(once) {
             once = 0
-            Alert.alert('Signed up successfully...\n Redirecting to home page')
             db.ref('/users').on('value', snapshot => {
               const data = Object.values(snapshot.val())
             for (d in data) {
