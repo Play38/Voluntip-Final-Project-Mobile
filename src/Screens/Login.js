@@ -4,26 +4,25 @@ import { PropTypes } from 'prop-types'
 import styles from '../Comp/Styles/containerStyle'
 import db from '../config'
 import stylesTest from '../Comp/Styles/LoginStyle'
+
 export default class App extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired
   }
   constructor(props) {
     super(props)
-    this.state = {
-      err_msg: ''
-    }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePress = this.handlePress.bind(this)
   }
 
   handleSubmit() {
-    let d
+    let d, once
     const LoginUser = item => {
       let object
       let flag = true
       db.ref('/users').on('value', snapshot => {
         const data = Object.values(snapshot.val())
+        once = 1
         for (d in data) {
           if (item.name === data[d].username) {
             if (item.password === data[d].password) {
@@ -34,22 +33,20 @@ export default class App extends Component {
         }
 
         if (!flag) {
-          //Alert.alert('Logged in successfully...\nRedirecting to home page')
           this.props.navigation.replace('MainPage', {
             username: object.username,
             userCoins: object.coins,
             left: null
           })
-        } else {
-          Alert.alert('Password is inncorrect or no\nsuch user found')
+        } else if(once) {
+          once = 0
+          Alert.alert(`Password is incorrect or no\nsuch user found`)
         }
       })
     }
     const user = Object()
     if (/\s/.test(this.state.name)) {
-      this.setState({
-        err_msg: 'Username must not include spaces'
-      })
+      Alert.alert(`Username must not include spaces`)
       return
     }
     user.name = this.state.name
@@ -82,7 +79,6 @@ export default class App extends Component {
         >
           <Text style={stylesTest.buttonText}>Login</Text>
         </TouchableOpacity>
-        <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
         <TouchableOpacity
           style={stylesTest.buttonSign}
           underlayColor="white"

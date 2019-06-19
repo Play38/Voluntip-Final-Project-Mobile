@@ -20,12 +20,13 @@ export default class SignUp extends Component {
   }
 
   handleSubmit() {
-    let d
+    let d, once, object
     const LoginUser = item => {
       let flag = true
       let newUser = false
       db.ref('/users').on('value', snapshot => {
         const data = Object.values(snapshot.val())
+        once = 1
         for (d in data) {
           if (item.name === data[d].username) {
             if (newUser === false) Alert.alert('User already exists')
@@ -39,32 +40,39 @@ export default class SignUp extends Component {
             password: item.password,
             coins: item.coins
           })
-          Alert.alert('Signed up successfully...\n Redirecting to home page')
-          this.props.navigation.replace('MainPage', {
-            username: item.username,
-            userCoins: item.coins
-          })
+          if(once) {
+            once = 0
+            Alert.alert('Signed up successfully...\n Redirecting to home page')
+            db.ref('/users').on('value', snapshot => {
+              const data = Object.values(snapshot.val())
+            for (d in data) {
+              if (item.name === data[d].username) {
+                if (item.password === data[d].password) {
+                  object = data[d]
+                }
+              }
+            }
+            this.props.navigation.replace('MainPage', {
+              username: object.username,
+              userCoins: object.coins
+            })
+            })
+          }
         }
       })
     }
 
     const user = Object()
-    if (this.state.pass === '' || this.state.name === '') {
-      this.setState({
-        err_msg: 'Fields cannot be empty'
-      })
+    if (this.state.pass === '' || this.state.name === '' || this.state.pass2 === '') {
+      Alert.alert('Fields cannot be empty')
       return
     }
     if (this.state.pass !== this.state.pass2) {
-      this.setState({
-        err_msg: 'Passwords does not match'
-      })
+      Alert.alert('Password does not match')
       return
     }
     if (/\s/.test(this.state.name)) {
-      this.setState({
-        err_msg: 'Username must not include spaces'
-      })
+      Alert.alert('Username must not include spaces')
       return
     }
     user.coins = 0
