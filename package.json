@@ -1,0 +1,75 @@
+{
+  "name": "exFinal",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "checkSubmission": {
+    "ex": "Final",
+    "students": [
+      {
+        "id": "313432213",
+        "fullName": "Omer Guttman",
+        "email": "guttman99@gmail.com"
+      },
+      {
+        "id": "307923615",
+        "fullName": "Ofir Cohen",
+        "email": "ofir_kohn41@hotmail.com"
+      }
+    ],
+    "os": "Windows",
+    "device": "Android",
+    "deliveryDate": "06/21/2019",
+    "delay": false,
+    "delayReason": "",
+    "comments": "Couldn't fix 6 eslint errors as this is how the bottomnav module works"
+  },
+  "dependencies": {
+    "@react-native-firebase/app": "^0.0.4",
+    "events": "^3.0.0",
+    "firebase": "^6.1.0",
+    "mongodb": "^3.2.6",
+    "mongodb-stitch-react-native-sdk": "^4.4.0",
+    "mongodb-stitch-react-native-services-mongodb-remote": "^4.4.0",
+    "prop-types": "^15.7.2",
+    "react": "16.8.3",
+    "react-native": "0.59.8",
+    "react-native-firebase": "^5.4.0",
+    "react-native-fs": "^2.13.3",
+    "react-native-gesture-handler": "^1.2.1",
+    "react-native-maps": "^0.24.2",
+    "react-native-paper": "^2.16.0",
+    "react-native-vector-icons": "^6.5.0",
+    "react-navigation": "^3.11.0",
+    "util": "^0.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-react-native": "^4.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-native": "^3.6.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "1.17.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
