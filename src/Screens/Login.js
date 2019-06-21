@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { PropTypes } from 'prop-types'
 import styles from '../Comp/Styles/containerStyle'
 import db from '../config'
@@ -11,18 +11,20 @@ export default class App extends Component {
   }
   constructor(props) {
     super(props)
+    this.state = {
+      err_msg: ''
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePress = this.handlePress.bind(this)
   }
 
   handleSubmit() {
-    let d, once
+    let d
     const LoginUser = item => {
       let object
       let flag = true
       db.ref('/users').on('value', snapshot => {
         const data = Object.values(snapshot.val())
-        once = 1
         for (d in data) {
           if (item.name === data[d].username) {
             if (item.password === data[d].password) {
@@ -38,15 +40,18 @@ export default class App extends Component {
             userCoins: object.coins,
             left: null
           })
-        } else if (once) {
-          once = 0
-          Alert.alert(`Password is incorrect or no\nsuch user found`)
+        } else {
+          this.setState({
+            err_msg: 'Password is incorrect or no such user was found'
+          })
         }
       })
     }
     const user = Object()
     if (/\s/.test(this.state.name)) {
-      Alert.alert(`Username must not include spaces`)
+      this.setState({
+        err_msg: `Username must not include spaces`
+      })
       return
     }
     user.name = this.state.name
@@ -55,7 +60,7 @@ export default class App extends Component {
     LoginUser(user)
   }
   handlePress() {
-    this.props.navigation.navigate('SignUp', {})
+    this.props.navigation.replace('SignUp', {})
   }
 
   render() {
@@ -79,6 +84,7 @@ export default class App extends Component {
         >
           <Text style={stylesTest.buttonText}>Login</Text>
         </TouchableOpacity>
+        <Text style={stylesTest.errorMassage}>{this.state.err_msg}</Text>
         <TouchableOpacity
           style={stylesTest.buttonSign}
           underlayColor="white"

@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import ListItem from "../src/Comp/ListItem"
+import ListItem from '../src/Comp/ListItem'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -19,14 +19,14 @@ describe('ListItem tests', function() {
     }
 
     const testRenderer = renderer.create(
-        <ListItem
-            id = {item.id}
-            coins = {item.coins}
-            price = {item.price}
-            name = {item.name}
-            img = {item.image}
-            update = {item.updateCoins}
-        />
+      <ListItem
+        id={item.id}
+        coins={item.coins}
+        price={item.price}
+        name={item.name}
+        img={item.image}
+        update={item.updateCoins}
+      />
     )
     expect(testRenderer.root.props).toHaveProperty('id')
     expect(testRenderer.root.props).toHaveProperty('coins')
@@ -46,14 +46,14 @@ describe('ListItem tests', function() {
     }
 
     const testRenderer = renderer.create(
-        <ListItem
-            id = {item.id}
-            coins = {item.coins}
-            price = {item.price}
-            name = {item.name}
-            img = {item.image}
-            update = {item.updateCoins}
-        />
+      <ListItem
+        id={item.id}
+        coins={item.coins}
+        price={item.price}
+        name={item.name}
+        img={item.image}
+        update={item.updateCoins}
+      />
     )
     expect(testRenderer.root.props.item).toBeUndefined()
   })

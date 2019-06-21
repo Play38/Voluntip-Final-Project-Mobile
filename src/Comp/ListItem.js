@@ -87,7 +87,7 @@ export default class Store extends Component {
         })
       })
     if (data[0].coins < this.state.price) {
-      Alert.alert('Not enough coins')
+      Alert.alert('Not enough voluntips')
     } else {
       this.state.updateCoins(data[0].coins - price)
       db.ref('/users')

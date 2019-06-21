@@ -1,5 +1,5 @@
 import db from '../config'
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from '../Comp/Styles/containerStyle'
 import React, { Component } from 'react'
 import stylesTest from '../Comp/Styles/LoginStyle'
@@ -29,7 +29,11 @@ export default class SignUp extends Component {
         once = 1
         for (d in data) {
           if (item.name === data[d].username) {
-            if (newUser === false) Alert.alert('User already exists')
+            if (newUser === false) {
+              this.setState({
+                err_msg: `User already exits`
+              })
+            }
             flag = false
           }
         }
@@ -63,15 +67,21 @@ export default class SignUp extends Component {
 
     const user = Object()
     if (this.state.pass === '' || this.state.name === '' || this.state.pass2 === '') {
-      Alert.alert('Fields cannot be empty')
+      this.setState({
+        err_msg: `Fields cannot be empty`
+      })
       return
     }
     if (this.state.pass !== this.state.pass2) {
-      Alert.alert('Password does not match')
+      this.setState({
+        err_msg: `Password does not match`
+      })
       return
     }
     if (/\s/.test(this.state.name)) {
-      Alert.alert('Username must not include spaces')
+      this.setState({
+        err_msg: `Username must not include spaces`
+      })
       return
     }
     user.coins = 0

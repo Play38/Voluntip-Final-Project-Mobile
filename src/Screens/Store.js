@@ -28,8 +28,7 @@ export default class Store extends Component {
     super(props)
     this.state = {
       id: this.props.id,
-      coins: 0,
-      nom: 0
+      coins: 0
     }
   }
 
@@ -57,7 +56,7 @@ export default class Store extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.balanceBox}>
-          <Text style={styles.balance}>Balance: {this.state.coins} coins</Text>
+          <Text style={styles.balance}>Balance: {this.state.coins} voluntips</Text>
         </View>
         <ListItem
           id={this.state.id}

@@ -68,7 +68,7 @@ export default class RedeemPage extends Component {
   }
 
   handleSubmit12() {
-    if (this.state.input !== '1234') {
+    if (this.state.input !== '1234' && this.state.input !== '1212') {
       this.setState({
         err_msg: 'Code is invalid'
       })
@@ -84,10 +84,17 @@ export default class RedeemPage extends Component {
             key = child.key
           })
         })
-      db.ref('/users')
-        .child(String(key))
-        .update({ coins: data[0].coins + 100 })
-      Alert.alert('You have been credited with 100 Coins')
+      if (this.state.input === '1234') {
+        db.ref('/users')
+          .child(String(key))
+          .update({ coins: data[0].coins + 100 })
+        Alert.alert('You have been credited with 100 Coins')
+      } else if (this.state.input === '1212') {
+        db.ref('/users')
+          .child(String(key))
+          .update({ coins: data[0].coins + 500 })
+        Alert.alert('You have been credited with 500 Coins')
+      }
     }
   }
   render() {

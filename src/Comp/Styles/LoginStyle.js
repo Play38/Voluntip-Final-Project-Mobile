@@ -51,6 +51,7 @@ export default StyleSheet.create({
   errorMassage: {
     fontSize: 25,
     marginTop: 10,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    textAlign: 'center'
   }
 })

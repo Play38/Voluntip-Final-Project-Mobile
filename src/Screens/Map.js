@@ -43,17 +43,17 @@ export default class Map extends Component {
       markers: [
         {
           coordinate: { latitude: 32.089015, longitude: 34.803732 },
-          tips: `Voluntip coins: ${getRandomInt(20, 100)}`,
+          tips: `Voluntips: ${getRandomInt(20, 100)}`,
           name: 'Lman'
         },
         {
           coordinate: { latitude: 32.091713, longitude: 34.798789 },
-          tips: `Voluntip coins: ${getRandomInt(20, 100)}`,
+          tips: `Voluntips: ${getRandomInt(20, 100)}`,
           name: 'Lasot'
         },
         {
           coordinate: { latitude: 32.12807, longitude: 34.800116 },
-          tips: `Voluntip coins: 1`,
+          tips: `Voluntips: 1`,
           name: 'Gutty'
         },
         {
